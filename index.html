@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>LISTA DE MERCADO INTELIGENTE</title>
+</head>
+<body>
+
+    <h1>LISTA DE MERCADO INTELIGENTE</h1>
+
+    <section>
+        <form>
+            <fieldset>
+                <legend>LISTA DO MERCADO</legend>
+
+                <p>
+                    <label for="mercadoria">MERCADORIA:</label>
+                    <input type="text" name="Mercadoria" id="mercadoria" placeholder="Digite aqui...">
+                </p>
+
+                <p>
+                    <label for="Quantidade">QUANTIDADE:</label>
+                    <input type="number" id="qntd" placeholder="Digite aqui...">
+                </p>
+
+                <p>
+                    <label for="preco">VALOR:</label>
+                    <input type="number" name="preco" id="valor" placeholder="Digite aqui...">
+                </p>
+
+                <p>
+                <input type="button" name="botao" id="btn-cal" value="CALCULAR" class="btn">
+                </p>
+
+                <ul id="lista-produtos"></ul>
+
+                <span id="total"></span>
+
+                <p>
+                    <input type="button" name="button-res" id="btn-res" value="RESETAR" class="btn-rese">
+                </p>
+            </fieldset>
+        </form>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
