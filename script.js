@@ -4,44 +4,85 @@ const botaoCalcular = document.getElementById("btn-cal")
 const listaUl = document.getElementById("lista-produtos")
 const campoTotal = document.getElementById("total")
 const quantia = document.getElementById("qntd")
-const botaoResetar = document.getElementById("btn-res")
 
-let totalGeral = 0
+let totalGeral = []
+totalGeral = JSON.parse(localStorage.getItem("minhaLista")) || []
 
-botaoCalcular.addEventListener ("click", () => {
-    const mercadoria = inputMercadoria.value;
-    const valor = parseFloat(inputValor.value)
-    const qntd = parseInt(quantia.value)
+botaoCalcular.addEventListener("click", () => {
+    const produto = inputMercadoria.value
+    const quantidade = parseFloat(quantia.value)
+    const preco = parseFloat(inputValor.value)
 
-    if (mercadoria === "" || isNaN(valor) || isNaN(qntd)) {
-        alert("Preencha os campos corretamente");
+    if(produto === "" || isNaN(quantidade) || isNaN(preco)) {
+        alert("Preencha os campos corretamente antes de continuar")
         return;
     }
 
-    const subtotal = valor * qntd
-    totalGeral = totalGeral + subtotal
+    const novoProduto = {
+        id: Date.now(),
+        produto: produto,
+        quantidade: quantidade,
+        preco: preco
+    }
 
-    const novaLi = document.createElement("li")
-    novaLi.innerText = `${mercadoria} (x${qntd}) - Subtotal: R$ ${subtotal.toFixed(2)}`;
-
-    listaUl.appendChild(novaLi);
-
-    campoTotal.innerText = `TOTAL: R$ ${totalGeral.toFixed(2)}`;
-
+    totalGeral.push(novoProduto);
+    renderizarProduto()
     limparCampos()
-    botaoResetar.style.display = 'block'
 })
 
-botaoResetar.addEventListener ("click", () => {
+function renderizarProduto(){
     listaUl.innerHTML = ""
-    totalGeral = 0
-    campoTotal.innerHTML = "TOTAL: R$ 0.00"
-    botaoResetar.style.display = 'none';
-})
+    let somaP = 0
+
+    totalGeral.forEach((almnt) => {
+        const novaLi = document.createElement("li");
+
+        const spanTexto = document.createElement("span")
+        spanTexto.innerText = `${almnt.produto} - R$ ${almnt.preco.toFixed(2)} [x${almnt.quantidade}]`
+
+        const btnExcluir = document.createElement("button")
+        btnExcluir.innerText = "❌"
+        btnExcluir.classList.add("btn-del")
+
+        btnExcluir.addEventListener("click", () => {
+            totalGeral = totalGeral.filter(item => item.id !== almnt.id);
+
+            listaUl.innerHTML = ""
+            renderizarProduto();
+            inputMercadoria.focus()
+        })
+        
+        const btnEditar = document.createElement("button")
+        btnEditar.innerText = "✏️"
+        btnEditar.classList.add("btn-edit")
+
+        btnEditar.addEventListener("click", () => {
+            inputMercadoria.value = almnt.produto
+            quantia.value = almnt.quantidade
+            inputValor.value = almnt.preco
+
+            totalGeral = totalGeral.filter(item => item.id !== almnt.id);
+            renderizarProduto()
+            inputMercadoria.focus()
+        })
+
+        novaLi.appendChild(btnEditar)
+        novaLi.appendChild(btnExcluir)
+        novaLi.appendChild(spanTexto)
+        listaUl.appendChild(novaLi)
+
+        somaP += (almnt.preco * almnt.quantidade)
+    })
+
+    campoTotal.innerText = `Total: R$ ${somaP.toFixed(2)}`
+    localStorage.setItem("minhaLista", JSON.stringify(totalGeral));
+}
 
 function limparCampos() {
     inputMercadoria.value = ""
     inputValor.value = ""
     quantia.value = ""
-    inputMercadoria.focus();
+    inputMercadoria.focus()
 }
+
+renderizarProduto()
