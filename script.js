@@ -101,7 +101,7 @@ function limparCampos() {
 
         totalGeral.forEach ((item) => {
             const totalItem = item.preco * item.quantidade;
-            textoArquivo += `- ${item.produto} | Qtd: ${item.quantidade} | Preço Un: ${item.preco.toFixed(2)} | Total Item: R$ ${totalItem.toFixed(2)} \n`;
+            textoArquivo += `- ${item.produto} | Qtd: ${item.quantidade} | Valor Un: ${item.preco.toFixed(2)} | Total Item: R$ ${totalItem.toFixed(2)} \n`;
             valorTotalGeral += totalItem;  
         })
 
