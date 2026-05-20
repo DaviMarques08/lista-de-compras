@@ -104,7 +104,8 @@ input[type="number"]:focus {
 }
 
 .btn:active {
-    transform: scale(0.98);
+    transform: scale(0.90);
+    
 }
 
 #lista-produtos {
@@ -139,6 +140,26 @@ input[type="number"]:focus {
     background-color: #e8f8f0;
     border-radius: 10px;
     border: 1px dashed #27ae60;
+}
+
+.salvar-lista {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #0cb606, #079e14);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.3s ease;
+    margin-top: 10px;
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.2);
+}
+
+.salvar-lista:hover {
+    transform: scale(1.05);
 }
 
 @media (max-width: 380px) {
