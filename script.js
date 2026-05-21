@@ -13,9 +13,16 @@ botaoCalcular.addEventListener("click", () => {
     const produto = inputMercadoria.value
     const quantidade = parseFloat(quantia.value)
     const preco = parseFloat(inputValor.value)
+    let produtoFormatado = produto.trim().toLowerCase()
+    const produtoJaExiste =totalGeral.some(item => item.produto.trim().toLowerCase() === produtoFormatado);
 
-    if(produto === "" || isNaN(quantidade) || isNaN(preco)) {
+    if(produto === "" || /\d/.test(produto) || isNaN(quantidade) || isNaN(preco)) {
         alert("Preencha os campos corretamente antes de continuar")
+        return;
+    } 
+
+    if (produtoJaExiste) {
+        alert("Esse produto já foi adicionado! Remova ou edite ele para continuar.")
         return;
     }
 
