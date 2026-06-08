@@ -9,26 +9,26 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "icon-128.png",
+      "src": "assets/icon-128.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "icon-512.png",
+      "src": "assets/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ],
   "screenshots": [
     {
-      "src": "Captura de tela 2026-05-25 151731.png",
+      "src": "assets/Captura de tela 2026-05-25 151731.png",
       "sizes": "1914x1042",
       "type": "image/png",
       "form_factor": "wide",
       "label": "Versão para Computador"
     },
     {
-      "src": "Captura de tela 2026-05-25 151731.png",
+      "src": "assets/Captura de tela 2026-05-25 151731.png",
       "sizes": "1914x1042",
       "type": "image/png",
       "label": "Versão para Celular"

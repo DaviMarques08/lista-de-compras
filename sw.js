@@ -1,12 +1,12 @@
-const CACHE_NAME = "mercado-app-v1";
+const CACHE_NAME = "mercado-app-v2";
 const assets = [
   "./",
   "./index.html",
   "./style.css",
   "./script.js",
   "./manifest.json",
-  "./icon-128.png",
-  "./icon-512.png"
+  "./assets/icon-128.png",
+  "./assets/icon-512.png"
 ];
 
 self.addEventListener("install", (e) => {
