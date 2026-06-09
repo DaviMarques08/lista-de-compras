@@ -122,6 +122,8 @@ function limparCampos() {
 
         linkinvisivel.click();
         URL.revokeObjectURL(linkinvisivel.href);
+        totalGeral = [];
+        renderizarProduto()
     })
 
 renderizarProduto()

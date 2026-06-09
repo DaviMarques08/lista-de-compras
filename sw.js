@@ -1,4 +1,4 @@
-const CACHE_NAME = "mercado-app-v2";
+const CACHE_NAME = "mercado-app-v4";
 const assets = [
   "./",
   "./index.html",
@@ -15,12 +15,30 @@ self.addEventListener("install", (e) => {
       return cache.addAll(assets);
     })
   );
+  self.skipWaiting();
 });
 
 self.addEventListener("fetch", (fetchEvent) => {
   fetchEvent.respondWith(
     caches.match(fetchEvent.request).then((res) => {
       return res || fetch(fetchEvent.request);
+    })
+  );
+});
+
+self.addEventListener("activate", (e) => {
+  e.waitUntil (
+    caches.keys().then((nomesDosCaches) => {
+      return Promise.all(
+        nomesDosCaches.map((cache) =>{
+          if(cache !== CACHE_NAME) {
+            console.log("Limpando cache antigo:", cache);
+            return caches.delete(cache);
+          }
+        })
+      );
+    }).then(() => {
+      return self.clients.claim();
     })
   );
 });
